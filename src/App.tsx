@@ -5,7 +5,7 @@ import TypeWrittingEffect from './components/TypeWritting/typeWritting';
 function App() {
   return (
     <div className="App">
-      <TypeWrittingEffect text={"I am Sudhindra"} speed={500} fontSize={24} />
+      <TypeWrittingEffect text={"I am Sudhindra Pai"} speed={400} clearMessageSpeed={100} fontSize={24} />
     </div>
   );
 }

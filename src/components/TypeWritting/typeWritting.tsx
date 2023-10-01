@@ -4,37 +4,46 @@ import classes from './type.module.css';
 type TypeWrittingProps = {
     text:string,
     speed:number,
-    fontSize:number
+    fontSize:number,
+    clearMessageSpeed:number
 }
 
 const TypeWrittingEffect:FC<TypeWrittingProps> = (props) => {
-    const {text,speed, fontSize} = props;
+    const {text,speed, fontSize, clearMessageSpeed} = props;
     const [message, setMessage] = useState<string>("");
-    const [oldMessage, setOldMessage] = useState<string>(text);
     const [index, setIndex] = useState<number>(0);
+    const [isTyping, setTyping] = useState<boolean>(true);
 
     useEffect(() => {
-        let method = setInterval(() => {
-            setIndex((count) => count + 1);
-            setMessage(oldMessage.substr(0,index));
-        },speed);
-        
-        return () => {
-            clearInterval(method)
+        if (isTyping) {
+            let method = setInterval(() => {
+                setIndex((count) => count + 1);
+                setMessage(text.substr(0,index));
+            },speed);
+            
+            return () => {
+                clearInterval(method);
+                if (message === text) {
+                    setIndex((count) => count * -1)
+                    setTyping(false)
+                }
+            }
+        } else {
+            let method = setInterval(() => {
+                setIndex((count) => count - 1);
+                let messageArray = (message.split(""));
+                messageArray.splice(-1,1)
+                setMessage(messageArray.join(""));
+                if (messageArray.length === 0) {
+                    setTyping(true);
+                }
+            },clearMessageSpeed);
+            
+            return () => {
+                clearInterval(method);
+            }
         }
     },[index]);
-
-    useEffect(() => {
-        if (message === text){ 
-        let method = setTimeout(() => {
-            setMessage("");
-            setIndex(0)
-        },1000)
-        return () => {
-            clearInterval(method);
-        }
-    }
-    },[message])
 
     return <div className={classes.Container} style={{fontSize: fontSize}}>{message}
     <span className={classes.Cursor} style={{height:fontSize}}></span></div>
