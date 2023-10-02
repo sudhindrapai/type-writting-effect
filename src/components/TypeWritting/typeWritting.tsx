@@ -5,11 +5,12 @@ type TypeWrittingProps = {
     text:string,
     speed:number,
     fontSize:number,
-    clearMessageSpeed:number
+    clearMessageSpeed:number,
+    loop: boolean
 }
 
 const TypeWrittingEffect:FC<TypeWrittingProps> = (props) => {
-    const {text,speed, fontSize, clearMessageSpeed} = props;
+    const {text,speed, fontSize, clearMessageSpeed, loop} = props;
     const [message, setMessage] = useState<string>("");
     const [index, setIndex] = useState<number>(0);
     const [isTyping, setTyping] = useState<boolean>(true);
@@ -23,8 +24,8 @@ const TypeWrittingEffect:FC<TypeWrittingProps> = (props) => {
             
             return () => {
                 clearInterval(method);
-                if (message === text) {
-                    setIndex((count) => count * -1)
+                if (message === text && loop === true) {
+                    setIndex((count) => count * -1);
                     setTyping(false)
                 }
             }
