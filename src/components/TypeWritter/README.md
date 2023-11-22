@@ -24,6 +24,16 @@ export default App;
 
 ```
 
+## Props and their details
+
+| PROPS             | Details                         | Type    |
+| ----------------- | ------------------------------- | ------- |
+| text              | message string                  | string  |
+| speed             | typing effect speed (in ms)     | number  |
+| fontSize          | font size of the typing message | number  |
+| clearMessageSpeed | clearing message speed (in ms)  | number  |
+| loop              | is typing effect should repeat  | boolean |
+
 ## License
 
-MIT
+ISC

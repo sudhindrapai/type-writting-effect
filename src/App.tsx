@@ -1,13 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import TypeWrittingEffect from './components/TypeWritting/src';
-import Test from './components/typing-test-directory/test'
+import {TypeWritter} from 'typewritter';
 function App() {
   return (
     <div className="App">
-      <TypeWrittingEffect text={"I am Sudhindra Pai"} speed={400} clearMessageSpeed={100} fontSize={24} loop={true} />
-      {/* <Test /> */}
+      <h1>Hi</h1>
+      <TypeWritter text="Hi This is a new typewritting package in typescript!!" speed={100} fontSize={16} clearMessageSpeed={30} loop={true} />
     </div>
   );
 }
