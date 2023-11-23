@@ -1,6 +1,6 @@
 {
   "name": "typewritter",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "new typewritting effect plugin",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
