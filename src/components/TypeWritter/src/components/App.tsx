@@ -1,5 +1,6 @@
 import React from 'react'
 import { FC, useEffect, useState } from 'react'
+import Classes from './App.module.css';
 
 type TypeWrittingProps = {
   text: string
@@ -50,7 +51,7 @@ const TypeWrittingEffect: FC<TypeWrittingProps> = (props): any => {
     <>
       <div style={{ fontSize: fontSize }}>
         {message}
-        <span style={{ height: fontSize }}></span>
+        <span className={Classes.Cursor} style={{ height: fontSize,  }}></span>
       </div>
     </>
   )
