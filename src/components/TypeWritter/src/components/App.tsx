@@ -16,16 +16,25 @@ const TypeWrittingEffect: FC<TypeWrittingProps> = (props): any => {
   const [index, setIndex] = useState<number>(0)
   const [isTyping, setTyping] = useState<boolean>(true)
 
+  const checkForXXSAttck = (text:string):string => {
+    let updatedString = "";
+    if (!text) return updatedString;
+    const regEx = /<|>/g;
+    updatedString = text.replace(regEx," ");
+    return updatedString
+  }
+
   useEffect(() => {
+    const updatedText = checkForXXSAttck(text);
     if (isTyping) {
       const method = setInterval(() => {
         setIndex((count) => count + 1)
-        setMessage(text.substr(0, index))
+        setMessage(updatedText.substr(0, index))
       }, speed)
 
       return () => {
         clearInterval(method)
-        if (message === text && loop === true) {
+        if (message === updatedText && loop === true) {
           setIndex((count) => count * -1)
           setTyping(false)
         }
@@ -45,16 +54,12 @@ const TypeWrittingEffect: FC<TypeWrittingProps> = (props): any => {
         clearInterval(method)
       }
     }
-  }, [index])
+  }, [index]);
 
-  return (
-    <>
-      <div style={{ fontSize: fontSize }}>
+  return <div style={{ fontSize: fontSize }}>
         {message}
         <span style={{ height: fontSize }}></span>
       </div>
-    </>
-  )
 }
 
 export default TypeWrittingEffect

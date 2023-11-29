@@ -1,6 +1,6 @@
 {
   "name": "typewritter",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "new typewritting effect plugin",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -10,6 +10,7 @@
     "url": "git+https://github.com/sudhindrapai/type-writting-effect.git"
   },
   "scripts": {
+    "start": "react-scripts start",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
@@ -25,7 +26,7 @@
     "new type writter package"
   ],
   "author": "Sudhindra Pai K",
-  "license": "ISC",
+  "license": "MIT",
   "files": [
     "dist",
     "LICENSE",
